@@ -1,0 +1,36 @@
+# Data — large rasters/tiles are pulled from GEE, never committed
+data/raw/*
+data/processed/*
+data/tiles/*
+!data/**/.gitkeep
+
+# Model checkpoints
+*.pt
+*.pth
+models/*.ckpt
+
+# Outputs (regenerated) — keep the dirs, ignore big files
+outputs/**/*.tif
+outputs/**/*.png
+outputs/**/*.jpg
+!outputs/**/.gitkeep
+
+# GEE / Google credentials — NEVER commit these
+*.json
+!configs/*.json
+.config/earthengine/
+ee-credentials*
+service-account*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
