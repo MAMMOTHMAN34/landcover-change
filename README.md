@@ -52,9 +52,9 @@ rasterio / GeoPandas · statsmodels · Colab (GPU training)
 
 | Step | Phase | Status |
 |-----:|-------|--------|
-| 1 | Project scaffold + GEE access | 🚧 in progress |
-| 2 | Data acquisition — S2 composites 2019/2021/2024 | ☐ |
-| 3 | Labels + training dataset (tiles + masks) | ☐ |
+| 1 | Project scaffold + GEE access | ✅ done |
+| 2 | Data acquisition — S2 composites 2019/2021/2024 | ✅ explored |
+| 3 | Labels + training dataset (tiles + masks) | 🚧 in progress |
 | 4 | U-Net model — build / train / validate | ☐ |
 | 5 | Inference + change detection | ☐ |
 | 6 | Economic analysis (palm-oil price vs forest loss) | ☐ |
