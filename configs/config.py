@@ -33,21 +33,26 @@ SNAPSHOT_YEARS = [2019, 2021, 2024]
 DRY_SEASON = ("06-01", "09-30")   # (month-day start, month-day end)
 
 # --------------------------------------------------------------------------
-# Land-cover class scheme (5 classes)
+# Land-cover class scheme (4 classes)
 # --------------------------------------------------------------------------
 # Trained against ESA WorldCover (10m) as the label source, remapped from its
-# native classes into our coarser 5-class scheme.
+# native classes into our coarser scheme.
+#
+# Originally 5 classes, but 'bare' came back as ~0.02% of the Indragiri-coast
+# AOI — a degenerate class that broke loss weighting and that the model can't
+# learn from. We fold bare / sparse ground into 'agriculture' (open non-forest
+# ground). WorldCover native 60/70/100 therefore map to class 1; existing tiles
+# (which still carry a stray class 4) are remapped 4 -> 1 in the data loader.
 CLASSES = {
     0: "forest",
-    1: "agriculture",   # incl. oil-palm plantation / cropland
+    1: "agriculture",   # incl. oil-palm plantation / cropland / bare ground
     2: "urban",         # built-up
     3: "water",
-    4: "bare",          # bare / sparse ground
 }
 N_CLASSES = len(CLASSES)
 
 # Display colours (hex) for maps, indexed by class id above.
-CLASS_COLORS = ["#1b7837", "#e6c200", "#d7191c", "#2c7fb8", "#bdbdbd"]
+CLASS_COLORS = ["#1b7837", "#e6c200", "#d7191c", "#2c7fb8"]
 
 # --------------------------------------------------------------------------
 # Sentinel-2 settings

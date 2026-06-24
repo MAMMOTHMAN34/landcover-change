@@ -24,8 +24,9 @@ of environmental economics.
 - Pulls **cloud-masked Sentinel-2** surface-reflectance composites (free, ESA
   Copernicus via Google Earth Engine) for a Riau deforestation front, one per
   year for **2019 / 2021 / 2024**.
-- Trains a **U-Net** to segment 5 land-cover classes: forest, agriculture,
-  urban, water, and bare, using **ESA WorldCover (10m)** as the label source.
+- Trains a **U-Net** to segment 4 land-cover classes: forest, agriculture,
+  urban, and water, using **ESA WorldCover (10m)** as the label source. (A 5th
+  class, bare ground, was dropped — it's ~0.02% of this coastal AOI.)
 - Runs inference across all three years and **quantifies per-class change**.
 - Cross-checks forest loss against **Hansen Global Forest Change** (annual,
   2001–2023) and runs a **lagged regression** vs **World Bank palm-oil prices**.
