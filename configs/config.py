@@ -19,7 +19,9 @@ AOI_NAME = "riau_kampar"
 # --------------------------------------------------------------------------
 # We build one cloud-masked composite per year over the dry-season window
 # (drier, fewer clouds in central Sumatra ~ Jun–Sep).
-SNAPSHOT_YEARS = [2017, 2020, 2024]
+# NB: starts at 2019, not 2017 — Sentinel-2 L2A surface reflectance only has
+# systematic coverage over Indonesia from ~2019 (2017 returns 0 scenes).
+SNAPSHOT_YEARS = [2019, 2021, 2024]
 DRY_SEASON = ("06-01", "09-30")   # (month-day start, month-day end)
 
 # --------------------------------------------------------------------------

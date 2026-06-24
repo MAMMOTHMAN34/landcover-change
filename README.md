@@ -23,7 +23,7 @@ of environmental economics.
 
 - Pulls **cloud-masked Sentinel-2** surface-reflectance composites (free, ESA
   Copernicus via Google Earth Engine) for a Riau deforestation front, one per
-  year for **2017 / 2020 / 2024**
+  year for **2019 / 2021 / 2024**
 - Trains a **U-Net** to segment 5 land-cover classes: forest, agriculture,
   urban, water, and bare, using **ESA WorldCover (10m)** as the label source
 - Runs inference across all three years and **quantifies per-class change**
@@ -53,7 +53,7 @@ rasterio / GeoPandas · statsmodels · Colab (GPU training)
 | Step | Phase | Status |
 |-----:|-------|--------|
 | 1 | Project scaffold + GEE access | 🚧 in progress |
-| 2 | Data acquisition — S2 composites 2017/2020/2024 | ☐ |
+| 2 | Data acquisition — S2 composites 2019/2021/2024 | ☐ |
 | 3 | Labels + training dataset (tiles + masks) | ☐ |
 | 4 | U-Net model — build / train / validate | ☐ |
 | 5 | Inference + change detection | ☐ |
