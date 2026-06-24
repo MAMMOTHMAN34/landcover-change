@@ -8,11 +8,19 @@ only define it once.
 # --------------------------------------------------------------------------
 # Area of interest — Riau province, Sumatra
 # --------------------------------------------------------------------------
-# A ~55 x 55 km box over the Kampar/Pelalawan lowlands, one of the most
-# intense palm-oil deforestation fronts in Indonesia. Format: [W, S, E, N]
-# (lon/lat, EPSG:4326). Tune these bounds once we eyeball the first composite.
-AOI_BBOX = [101.5, 0.0, 102.0, 0.5]
-AOI_NAME = "riau_kampar"
+# A ~0.5deg box over the Indragiri Hilir coast (SE Riau): a smallholder
+# oil-palm / coconut / cropland mosaic with intact peat forest inland and a
+# real coastal water class. Chosen from notebook 03 as the most class-diverse
+# of the candidates tested (~85% forest / 10% agriculture / 4% water).
+# Format: [W, S, E, N] in lon/lat (EPSG:4326).
+#
+# NB: every Riau box reads as 85-93% "forest" because WorldCover maps mature
+# oil palm as Tree cover. We can't fix the imbalance by moving the box, so we
+# handle it in the model (weighted loss + per-class IoU) and frame the change
+# signal as tree-cover *loss* over time. Separating forest vs plantation (via a
+# dedicated oil-palm layer) is the planned extension, not the baseline.
+AOI_BBOX = [102.9, -0.6, 103.4, -0.1]
+AOI_NAME = "indragiri_coast"
 
 # --------------------------------------------------------------------------
 # Time snapshots for the U-Net change-detection story
