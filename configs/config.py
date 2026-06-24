@@ -6,7 +6,7 @@ only define it once.
 """
 
 # --------------------------------------------------------------------------
-# Area of interest — Riau province, Sumatra
+# Area of interest: Riau province, Sumatra
 # --------------------------------------------------------------------------
 # A ~0.5deg box over the Indragiri Hilir coast (SE Riau): a smallholder
 # oil-palm / coconut / cropland mosaic with intact peat forest inland and a
