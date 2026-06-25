@@ -56,9 +56,13 @@ of environmental economics.
 | urban | 0.58 | only 0.6% of pixels; class weighting earns this |
 | agriculture | 0.41 | shares a fuzzy edge with "forest" |
 
+![U-Net predictions vs WorldCover labels](outputs/figures/predictions.png)
+
+*Validation tiles: Sentinel-2 image, WorldCover label, U-Net prediction.*
+
 **Change detection (2019 → 2024).** Run across the three
 years, the model reports forest *increasing* (net **+110 km²**; share 83.5% →
-87.1%), which looks backwards for a deforestation front. It isn't reforestation however, it's two effects worth understanding:
+87.1%), which looks backwards for a deforestation front. It isn't reforestation however, it's:
 
 1. **Plantation maturation reads as "forest gain."** Mature oil palm is labelled
    Tree cover, so clear→replant→regrow nets out as a *gain* in tree cover even as
@@ -71,6 +75,10 @@ model difference is *not* a reliable net-deforestation metric here. That is
 exactly why the deforestation statistics come from **Hansen** (annual, 2001–2023,
 which flags loss *events*) rather than from differencing model snapshots.
 
+![Predicted land cover 2019 / 2021 / 2024](outputs/figures/landcover_maps.png)
+
+![Forest change 2019 → 2024 (red = loss, blue = gain)](outputs/figures/change_map.png)
+
 **Economics (Hansen forest loss vs palm-oil price, 2001–2024):** A lagged OLS
 finds only a **weak, non-significant** link, best at a **3-year lag (R² = 0.13,
 p = 0.11)**, with a positive slope at every lag. The direction is suggestive
@@ -78,6 +86,50 @@ p = 0.11)**, with a positive slope at every lag. The direction is suggestive
 against a *single* ~3,000 km² AOI, and big confounders (the 2011 moratorium, the
 2015 fires, COVID), **price alone doesn't explain local forest loss.** Thus, I reported
 as an honest near-null result.
+
+![Annual forest loss vs palm-oil price](outputs/figures/loss_vs_price.png)
+
+## Methods
+
+1. **Imagery**: Sentinel-2 L2A surface reflectance (6 bands: B2/3/4/8/11/12),
+   cloud-masked with **Cloud Score+**, median-composited over the dry season
+   (Jun–Sep) for each year.
+2. **Labels**: ESA WorldCover 2021, remapped to 4 classes; the 2021 composite +
+   labels form the single labelled training pair.
+3. **Dataset**: 256×256 px tiles, **spatial** train/val split (rightmost 20%
+   held out to avoid leakage), median-frequency class weights.
+4. **Model**: ResNet-34 **U-Net** (`segmentation-models-pytorch`), best checkpoint by val mIoU.
+5. **Change**: one trained model applied to 2019/2021/2024; per-class area +
+   forest-loss map.
+6. **Economics**: Hansen annual forest loss vs World Bank palm-oil price,
+   lagged OLS regression.
+
+## Limitations
+
+- **"Forest" = tree cover.** WorldCover labels mature oil palm as tree cover, so
+  the model can't separate plantation from natural forest. Thus, net tree-cover change
+  *understates* real deforestation.
+- **3-snapshot change is noisy.** Year-to-year composite/model differences swamp
+  real conversion, so model-snapshot differencing is unreliable for net change
+  (hence Hansen for the loss statistics).
+- **The economic test is weak by design.** ~23 yearly points, a *global* price
+  against one ~3,000 km² AOI, autocorrelation, and confounders (2011 moratorium,
+  2015 fires, COVID) → association at best, not causation.
+- **Single AOI, single label epoch.** Trained on 2021 labels over one box;
+  generalisation elsewhere is untested.
+
+## Future work
+
+- **Split natural forest from plantation (the key extension).** Fuse a dedicated
+  oil-palm map (e.g. Descals et al. 2021 global oil palm, 10 m) so "tree cover"
+  separates into **natural forest vs plantation**. This directly fixes the
+  headline limitation and turns net tree-cover change into a true
+  natural-forest-loss signal.
+- **More snapshots / a temporal model** to suppress year-to-year noise.
+- **Larger and multiple AOIs**, plus a second label epoch, for honest cross-year
+  validation.
+- **Uncertainty estimates** on per-class IoU and change (e.g. bootstrap over
+  tiles).
 
 ## Stack
 

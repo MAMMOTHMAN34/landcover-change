@@ -9,11 +9,13 @@ data/tiles/*
 *.pth
 models/*.ckpt
 
-# Outputs (regenerated) — keep the dirs, ignore big files
+# Outputs (regenerated) — keep the dirs, ignore big rasters
 outputs/**/*.tif
 outputs/**/*.png
 outputs/**/*.jpg
 !outputs/**/.gitkeep
+# ...but DO commit the small README figures
+!outputs/figures/*.png
 
 # GEE / Google credentials — NEVER commit these
 *.json
