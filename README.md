@@ -1,10 +1,5 @@
 # Land Cover Change Detection: Riau, Sumatra
 
-Deep-learning computer vision on real satellite imagery to map and quantify
-deforestation, then tie forest loss to palm-oil economics.
-
----
-
 ## Why this project
 
 The lowland forests of Riau, Sumatra have been among the fastest-disappearing
@@ -45,8 +40,7 @@ of environmental economics.
   price→forest-loss regression is actually meaningful.
 - **"Forest" means tree cover, and the data is imbalanced on purpose.** Every
   Riau AOI reads as 85-93% forest because WorldCover labels mature oil palm as
-  Tree cover. Rather than chase a balanced box that doesn't exist, I keep the
-  most class-diverse AOI (Indragiri coast), handle the imbalance with a weighted
+  Tree cover. I keep the most class-diverse AOI (Indragiri coast), handle the imbalance with a weighted
   loss + per-class IoU, and measure deforestation as tree-cover *loss* over
   time. Splitting natural forest from plantation (via a dedicated oil-palm map)
   is the planned extension, not the baseline.
@@ -59,18 +53,17 @@ of environmental economics.
 |---|---|---|
 | water | 0.93 | spectrally distinct, easiest |
 | forest | 0.86 | abundant, well-learned |
-| urban | 0.58 | only 0.6% of pixels — class weighting earns this |
-| agriculture | 0.41 | the hard catch-all; shares a fuzzy edge with "forest" |
+| urban | 0.58 | only 0.6% of pixels; class weighting earns this |
+| agriculture | 0.41 | shares a fuzzy edge with "forest" |
 
-**Change detection (2019 → 2024) — and an honest caveat.** Run across the three
+**Change detection (2019 → 2024).** Run across the three
 years, the model reports forest *increasing* (net **+110 km²**; share 83.5% →
-87.1%), which looks backwards for a deforestation front. It isn't reforestation —
-it's two effects worth understanding:
+87.1%), which looks backwards for a deforestation front. It isn't reforestation however, it's two effects worth understanding:
 
 1. **Plantation maturation reads as "forest gain."** Mature oil palm is labelled
    Tree cover, so clear→replant→regrow nets out as a *gain* in tree cover even as
    natural forest is lost.
-2. **Year-to-year noise.** The trend is non-monotonic (83.5 → 82.1 → 87.1) — the
+2. **Year-to-year noise.** The trend is non-monotonic (83.5 → 82.1 → 87.1), thus the
    fingerprint of composite/model inconsistency, not a real trajectory.
 
 **Takeaway:** the U-Net is strong for **land-cover mapping**, but a 3-snapshot
