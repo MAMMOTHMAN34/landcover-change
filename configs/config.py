@@ -68,4 +68,4 @@ EXPORT_SCALE = 10                # metres per pixel
 # Label / reference products
 # --------------------------------------------------------------------------
 WORLDCOVER = "ESA/WorldCover/v200"           # 2021 land cover, training labels
-HANSEN_GFC = "UMD/hansen/global_forest_change_2023_v1_11"  # annual forest loss
+HANSEN_GFC = "UMD/hansen/global_forest_change_2025_v1_13"  # annual forest loss (to 2024)
