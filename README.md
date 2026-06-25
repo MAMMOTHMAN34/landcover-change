@@ -51,6 +51,35 @@ of environmental economics.
   time. Splitting natural forest from plantation (via a dedicated oil-palm map)
   is the planned extension, not the baseline.
 
+## Results & findings
+
+**Segmentation (U-Net, 4-class, validation):** best **mIoU 0.716**.
+
+| class | IoU | note |
+|---|---|---|
+| water | 0.93 | spectrally distinct, easiest |
+| forest | 0.86 | abundant, well-learned |
+| urban | 0.58 | only 0.6% of pixels — class weighting earns this |
+| agriculture | 0.41 | the hard catch-all; shares a fuzzy edge with "forest" |
+
+**Change detection (2019 → 2024) — and an honest caveat.** Run across the three
+years, the model reports forest *increasing* (net **+110 km²**; share 83.5% →
+87.1%), which looks backwards for a deforestation front. It isn't reforestation —
+it's two effects worth understanding:
+
+1. **Plantation maturation reads as "forest gain."** Mature oil palm is labelled
+   Tree cover, so clear→replant→regrow nets out as a *gain* in tree cover even as
+   natural forest is lost.
+2. **Year-to-year noise.** The trend is non-monotonic (83.5 → 82.1 → 87.1) — the
+   fingerprint of composite/model inconsistency, not a real trajectory.
+
+**Takeaway:** the U-Net is strong for **land-cover mapping**, but a 3-snapshot
+model difference is *not* a reliable net-deforestation metric here. That is
+exactly why the deforestation statistics come from **Hansen** (annual, 2001–2023,
+which flags loss *events*) rather than from differencing model snapshots.
+
+<!-- TODO: add Step 6 economic result — palm-oil price vs Hansen forest loss, lag, correlation -->
+
 ## Stack
 
 Python ; Google Earth Engine ; PyTorch (`segmentation-models-pytorch`) ;
