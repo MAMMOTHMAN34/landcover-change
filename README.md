@@ -146,8 +146,3 @@ landcover-change/
 ├── data/               # raw / processed / tiles  (gitignored)
 └── outputs/            # figures + maps  (gitignored)
 ```
-
-## Setup
-
-See [`docs/setup.md`](docs/setup.md) for Google Earth Engine registration and
-local environment setup.
