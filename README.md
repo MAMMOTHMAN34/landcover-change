@@ -26,7 +26,7 @@ of environmental economics.
   year for **2019 / 2021 / 2024**.
 - Trains a **U-Net** to segment 4 land-cover classes: forest, agriculture,
   urban, and water, using **ESA WorldCover (10m)** as the label source. (A 5th
-  class, bare ground, was dropped — it's ~0.02% of this coastal AOI.)
+  class, bare ground, was dropped as it's ~0.02% of this coastal AOI.)
 - Runs inference across all three years and **quantifies per-class change**.
 - Cross-checks forest loss against **Hansen Global Forest Change** (annual,
   2001–2023) and runs a **lagged regression** vs **World Bank palm-oil prices**.
@@ -37,7 +37,7 @@ of environmental economics.
 
 - **Labels from a published product.** Hand-labelling satellite pixels is
   not feasible, so the U-Net is trained to reproduce ESA WorldCover from raw S2
-  bands, which is a legitimate segmentation task.
+  bands.
 - **Composites, not single scenes.** Riau is extremely cloudy, thus should median-
   composite cloud-masked imagery over the dry season (Jun–Sep) each year.
 - **Two evidence streams for the economics.** The U-Net gives 3 high-detail
@@ -53,8 +53,8 @@ of environmental economics.
 
 ## Stack
 
-Python · Google Earth Engine · PyTorch (`segmentation-models-pytorch`) ·
-rasterio / GeoPandas · statsmodels · Colab (GPU training)
+Python ; Google Earth Engine ; PyTorch (`segmentation-models-pytorch`) ;
+rasterio / GeoPandas ; statsmodels ; Colab (GPU training)
 
 ## Project structure
 
