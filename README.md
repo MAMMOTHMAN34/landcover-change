@@ -71,13 +71,13 @@ model difference is *not* a reliable net-deforestation metric here. That is
 exactly why the deforestation statistics come from **Hansen** (annual, 2001–2023,
 which flags loss *events*) rather than from differencing model snapshots.
 
-**Economics (Hansen forest loss vs palm-oil price, 2001–2024).** A lagged OLS
-finds only a **weak, non-significant** link — best at a **3-year lag (R² = 0.13,
+**Economics (Hansen forest loss vs palm-oil price, 2001–2024):** A lagged OLS
+finds only a **weak, non-significant** link, best at a **3-year lag (R² = 0.13,
 p = 0.11)**, with a positive slope at every lag. The direction is suggestive
-(higher price → later clearing), but with ~23 yearly points, a *global* price
+(higher price → later clearing), but with only ~23 yearly points, a *global* price
 against a *single* ~3,000 km² AOI, and big confounders (the 2011 moratorium, the
-2015 fires, COVID), **price alone doesn't explain local forest loss.** Reported
-as an honest near-null result — association, not causation.
+2015 fires, COVID), **price alone doesn't explain local forest loss.** Thus, I reported
+as an honest near-null result.
 
 ## Stack
 
