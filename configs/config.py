@@ -1,7 +1,7 @@
 """Central configuration for the land-cover-change project.
 
 Everything that another module might need to agree on (the study area, the
-years we compare, the class scheme, the GEE collection ids) lives here so we
+years I compare, the class scheme, the GEE collection ids) lives here so I
 only define it once.
 """
 
@@ -15,7 +15,7 @@ only define it once.
 # Format: [W, S, E, N] in lon/lat (EPSG:4326).
 #
 # NB: every Riau box reads as 85-93% "forest" because WorldCover maps mature
-# oil palm as Tree cover. We can't fix the imbalance by moving the box, so we
+# oil palm as Tree cover. I can't fix the imbalance by moving the box, so I
 # handle it in the model (weighted loss + per-class IoU) and frame the change
 # signal as tree-cover *loss* over time. Separating forest vs plantation (via a
 # dedicated oil-palm layer) is the planned extension, not the baseline.
@@ -25,7 +25,7 @@ AOI_NAME = "indragiri_coast"
 # --------------------------------------------------------------------------
 # Time snapshots for the U-Net change-detection story
 # --------------------------------------------------------------------------
-# We build one cloud-masked composite per year over the dry-season window
+# I build one cloud-masked composite per year over the dry-season window
 # (drier, fewer clouds in central Sumatra ~ Jun–Sep).
 # NB: starts at 2019, not 2017 — Sentinel-2 L2A surface reflectance only has
 # systematic coverage over Indonesia from ~2019 (2017 returns 0 scenes).
@@ -40,7 +40,7 @@ DRY_SEASON = ("06-01", "09-30")   # (month-day start, month-day end)
 #
 # Originally 5 classes, but 'bare' came back as ~0.02% of the Indragiri-coast
 # AOI — a degenerate class that broke loss weighting and that the model can't
-# learn from. We fold bare / sparse ground into 'agriculture' (open non-forest
+# learn from. I fold bare / sparse ground into 'agriculture' (open non-forest
 # ground). WorldCover native 60/70/100 therefore map to class 1; existing tiles
 # (which still carry a stray class 4) are remapped 4 -> 1 in the data loader.
 CLASSES = {
