@@ -141,8 +141,8 @@ rasterio / GeoPandas ; statsmodels ; Colab (GPU training)
 ```
 landcover-change/
 ├── configs/            # study area, years, class scheme, GEE collection ids
-├── src/landcover/      # reusable modules (data, model, analysis)
-├── notebooks/          # exploration + Colab training notebooks
-├── data/               # raw / processed / tiles  (gitignored)
-└── outputs/            # figures + maps  (gitignored)
+├── notebooks/          # the pipeline, 01–07 (Colab)
+├── outputs/figures/    # result figures embedded in this README
+├── docs/               # setup / GEE registration notes
+└── src/landcover/      # (reserved) home for a reusable-module refactor
 ```
